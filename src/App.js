@@ -12,88 +12,72 @@ function App() {
     </div>
   );
 }
-//REACT FUNCTIONAL COMPONENT
+
+/* 
+  Rules of Components:
+    1. PascalCase
+    2. Return Statement With () and single enclosing html element, usually <div></div>
+    3. Components can be included in other components like html elements
+*/
+
 const MyInfoComponent = () => {
-  // USE STATE IS NEEDED FOR VARIABLE
-  // VARIABLE | TAKES IN A FUNCTION
-  const [myAge, setMyAge] = useState(0);
-  const [myFavoriteColor, setMyFavoriteColor] = useState();
-  const [myName, setMyName] = useState();
-  const [favoriteMovies, setFavoriteMovies] = useState([]);
-  const favoriteMoviesArray = [];
+  const [myName, setMyName] = useState("Sonny");
+  const [myFavoriteColor, setMyFavoriteColor] = useState("Black");
+  const [favoriteMovies, setFavoriteMovies] = useState([
+    "GoodFellas",
+    "Space Balls",
+    "God Father",
+  ]);
+
   return (
     <div>
-      <p>My name is: {myName}</p>
-      <p>My favorite color is {myFavoriteColor}</p>
-
-      <p>I am {myAge} years old</p>
-      <p style={{ backgroundColor: myFavoriteColor }}>{myFavoriteColor}</p>
-      <div>
-        <button
-          onClick={() => {
-            setMyAge(myAge + 1);
-            console.log(setMyAge);
-          }}
-        >
-          AGE +
-        </button>
-      </div>
+      <h4>Name: </h4>
+      <p>{myName}</p>
       <input
         type="text"
-        placeholder="COLOR INPUT"
+        value={myName}
         onChange={(e) => {
-          const value = e.target.value;
-          setMyFavoriteColor(value);
-          console.log(value);
+          console.log(e.target.value);
+          setMyName(e.target.value);
         }}
       ></input>
-      <div>
-        <input
-          type="text"
-          placeholder="INPUT NAME"
-          onChange={(e) => {
-            const value = e.target.value;
-            setMyName(value);
-            console.log(value);
-          }}
-        ></input>
-        <h3>My favorite movies are: </h3>
-        <ul>
-         <li>{favoriteMovies[0]}</li>
-         <li>{favoriteMovies[1]}</li>
-         <li>{favoriteMovies[2]}</li>
-          </ul>
-        <div>
-          <input
-            type="text"
-            placeholder="MOVIE 1"
-            onChange={(event) => {
-              favoriteMoviesArray[0] = event.target.value;
-              setFavoriteMovies(favoriteMoviesArray);
-            }}
-          ></input>
-        </div>
-        <div>
-          <input
-            type="text"
-            placeholder="MOVIE 2"
-            onChange={(event) => {
-              favoriteMoviesArray[1] = event.target.value;
-              setFavoriteMovies(favoriteMoviesArray);
-            }}
-          ></input>
-        </div>
-        <div>
-          <input
-            type="text"
-            placeholder="MOVIE 3"
-            onChange={(event) => {
-              favoriteMoviesArray[2] = event.target.value;
-              setFavoriteMovies(favoriteMoviesArray);
-            }}
-          ></input>
-        </div>
-      </div>
+      <h4>Favorite Color: </h4>
+      <p style={{ backgroundColor: myFavoriteColor }}>{myFavoriteColor}</p>
+      <input
+        type="text"
+        onChange={(e) => {
+          setMyFavoriteColor(e.target.value);
+        }}
+      ></input>
+      <h4>Favorite Movies: </h4>
+      <ul>
+        {favoriteMovies.map((element, index) => {
+          return <li key={`favorite-movie-${index}`}>{element}</li>;
+        })}
+      </ul>
+      <ul>
+        {favoriteMovies.map((element, index) => {
+          return (
+            <li key={`favorite-movie-input-${index}`}>
+              <label>Movie {index + 1}: </label>
+              <input
+                type="text"
+                value={favoriteMovies[index]}
+                onChange={(e) => {
+                  console.log(e.target.value);
+                  const updatedMovies = [
+                    favoriteMovies[0],
+                    favoriteMovies[1],
+                    favoriteMovies[2],
+                  ];
+                  updatedMovies[index] = e.target.value;
+                  setFavoriteMovies(updatedMovies);
+                }}
+              ></input>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 };
