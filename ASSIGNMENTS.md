@@ -26,10 +26,10 @@
 * Connect the setter function from React's useState hook to the event.target.value of the text input field. If you did it right, the state variables displayed to the page should update in real time as you type. ✅
 
 
-* Add three additional text input fields to the page, each input field should update a specific index in the favoriteMovies array with a new movie title (not the way we'll do it in the future, but the easiest way for now). 
+* Add three additional text input fields to the page, each input field should update a specific index in the favoriteMovies array with a new movie title (not the way we'll do it in the future, but the easiest way for now). ✅
 
 
 
 
 * Hint: Another way of doing this would be to have two input fields, a number input and a text input. 
-* The number input would correspond to the index you're targeting and the text would be the new string value of the movie.
+* The number input would correspond to the index you're targeting and the text would be the new string value of the movie. ✅
